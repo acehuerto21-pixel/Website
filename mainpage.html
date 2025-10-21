@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DANCE STUDIO | Classes & Rentals</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Make calendar header text white */
+        #currentMonth {
+            color: white !important;
+        }
+        
+        /* Responsive Design Improvements */
+        @media (max-width: 1200px) {
+            .container {
+                width: 95%;
+                padding: 0 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            /* Navigation */
+            .navbar .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                margin-top: 10px;
+            }
+            
+            .nav-links li a {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+            
+            /* Hero Section */
+            .hero {
+                padding: 60px 0;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+                line-height: 1.2;
+                margin-bottom: 20px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                padding: 12px 20px;
+            }
+            
+            /* Calendar Section */
+            .class-calendar {
+                padding: 40px 0;
+            }
+            
+            .class-calendar h2 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+            
+            .calendar-container {
+                margin: 20px 0;
+            }
+            
+            .calendar-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .calendar-nav-btn {
+                padding: 8px 12px;
+                font-size: 16px;
+            }
+            
+            #currentMonth {
+                font-size: 1.2rem;
+                margin: 10px 0;
+            }
+            
+            .calendar-weekdays {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 5px;
+                font-size: 12px;
+            }
+            
+            .calendar-days {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 5px;
+            }
+            
+            .calendar-day {
+                min-height: 80px;
+                padding: 8px;
+            }
+            
+            .day-number {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+            
+            .day-name {
+                font-size: 10px;
+                margin-bottom: 5px;
+            }
+            
+            .class-count {
+                font-size: 10px;
+            }
+            
+            .calendar-actions {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+                margin-top: 30px;
+            }
+            
+            .calendar-actions .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Extra small screens */
+            .container {
+                width: 98%;
+                padding: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 14px;
+            }
+            
+            .class-calendar h2 {
+                font-size: 1.5rem;
+            }
+            
+            .calendar-weekdays {
+                font-size: 10px;
+            }
+            
+            .calendar-day {
+                min-height: 70px;
+                padding: 5px;
+            }
+            
+            .day-number {
+                font-size: 12px;
+            }
+            
+            .day-name {
+                font-size: 9px;
+            }
+            
+            .class-count {
+                font-size: 9px;
+            }
+            
+            .nav-links {
+                gap: 10px;
+            }
+            
+            .nav-links li a {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+        }
+        
+        /* Tablet adjustments */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                width: 90%;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .calendar-days {
+                gap: 8px;
+            }
+            
+            .calendar-day {
+                min-height: 100px;
+            }
+        }
+        
+        /* Large screen optimizations */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1400px;
+            }
+            
+            .hero h1 {
+                font-size: 4rem;
+            }
+            
+            .calendar-days {
+                gap: 15px;
+            }
+            
+            .calendar-day {
+                min-height: 120px;
+            }
+        }
+    </style>
+</head>
+<body class="theme-bw">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="mainpage.html" class="logo">ZERØ<span class="highlight">STUDIO</span></a>
+            <ul class="nav-links">
+                <li><a href="mainpage.html">Home</a></li>
+                <li><a href="schedule.html">Schedule</a></li>
+                <li><a href="coachespage.html">Coaches</a></li>
+                <li><a href="createaccount.html">Create Account</a></li>
+                <li><a href="appointment.html">Book Class</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>WHERE <span class="highlight">ZERØ</span> MEANS LIMITLESS</h1>
+            <p>From absolute beginner to professional, we have classes for every level. Your dance journey starts here.</p>
+            <div class="buttons">
+                <a href="schedule.html" class="btn">View Schedule</a>
+                <a href="appointment.html" class="btn btn-outline">Book Class</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Class Calendar Section -->
+    <section class="class-calendar">
+        <div class="container">
+            <h2>Weekly Class Schedule</h2>
+            <p>Check our weekly calendar to see available classes and book your spot!</p>
+            
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button id="prevMonth" class="calendar-nav-btn">&lt;</button>
+                    <h3 id="currentMonth">December 2024</h3>
+                    <button id="nextMonth" class="calendar-nav-btn">&gt;</button>
+                </div>
+                
+                <div class="calendar-weekdays">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+                
+                <div id="calendarDays" class="calendar-days">
+                    <!-- Calendar days will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            
+            <div class="calendar-actions">
+                <a href="appointment.html" class="btn">Book a Class</a>
+                <a href="schedule.html" class="btn btn-outline">View All Classes</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#" class="logo">ZERØ<span class="highlight">STUDIO</span></a>
+                    <p>Where zero means limitless potential. A space to learn, create, and express through dance.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>STUDIO</h4>
+                    <ul>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="#">Instructors</a></li>
+                        <li><a href="#">Facilities</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>CLASSES</h4>
+                    <ul>
+                        <li><a href="classespage.html">Schedule</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Workshops</a></li>
+                        <li><a href="#">Private Lessons</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>LEGAL</h4>
+                    <ul>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Waiver</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 ZERØ Studio. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Terms</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Class Calendar Functionality
+        class ClassCalendar {
+            constructor() {
+                this.currentDate = new Date();
+                this.currentWeek = 0; // 0 = current week, 1 = next week, -1 = previous week
+                
+                // Initialize empty class schedule - will be loaded from Firebase
+                this.classSchedule = {
+                    0: [], // Sunday
+                    1: [], // Monday
+                    2: [], // Tuesday
+                    3: [], // Wednesday
+                    4: [], // Thursday
+                    5: [], // Friday
+                    6: []  // Saturday
+                };
+                
+                this.init();
+            }
+            
+            init() {
+                this.bindEvents();
+                this.loadClassesFromFirebase();
+            }
+            
+            bindEvents() {
+                document.getElementById('prevMonth').addEventListener('click', () => this.previousWeek());
+                document.getElementById('nextMonth').addEventListener('click', () => this.nextWeek());
+            }
+            
+            loadClassesFromFirebase() {
+                // Load classes from Firebase
+                const classesRef = firebase.database().ref('classes');
+                
+                classesRef.on('value', (snapshot) => {
+                    const firebaseClasses = snapshot.val() || {};
+                    
+                    // Reset class schedule
+                    this.classSchedule = {
+                        0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: []
+                    };
+                    
+                    // Populate class schedule from Firebase data
+                    Object.values(firebaseClasses).forEach(classData => {
+                        const day = classData.day;
+                        if (this.classSchedule[day]) {
+                            this.classSchedule[day].push({
+                                time: classData.time,
+                                class: classData.class,
+                                instructor: classData.instructor,
+                                type: classData.type,
+                                description: classData.description || ''
+                            });
+                        }
+                    });
+                    
+                    // Sort classes by time for each day
+                    Object.keys(this.classSchedule).forEach(day => {
+                        this.classSchedule[day].sort((a, b) => a.time.localeCompare(b.time));
+                    });
+                    
+                    // Render calendar with updated data
+                    this.renderCalendar();
+                }, (error) => {
+                    console.error('Error loading classes:', error);
+                    // Fallback to default classes if Firebase fails
+                    this.loadDefaultClasses();
+                    this.renderCalendar();
+                });
+            }
+            
+            loadDefaultClasses() {
+                // Fallback default classes if Firebase is not available
+                this.classSchedule = {
+                    1: [
+                        { time: '18:00', class: 'Hip-Hop Choreography', instructor: 'Dean Gales', type: 'hiphop' },
+                        { time: '19:30', class: 'Basic Femme', instructor: 'Jaja Bordado', type: 'femme' },
+                        { time: '21:00', class: 'Contemporary Flow', instructor: 'Jaja Bordado', type: 'contemporary' }
+                    ],
+                    2: [
+                        { time: '18:00', class: 'K-Pop Choreography', instructor: 'Joshua Dacena', type: 'kpop' },
+                        { time: '19:30', class: 'Basic Dancehall', instructor: 'April Antonette', type: 'dancehall' },
+                        { time: '21:00', class: 'Hip-Hop', instructor: 'Carla Faner', type: 'hiphop' }
+                    ],
+                    3: [
+                        { time: '18:00', class: 'R&B Flow', instructor: 'Chael Ablaza', type: 'contemporary' },
+                        { time: '19:30', class: 'Shapes & Figures', instructor: 'Forest Ligayu', type: 'contemporary' },
+                        { time: '21:00', class: 'Hip-Hop', instructor: 'Sef Remollo', type: 'hiphop' }
+                    ],
+                    4: [
+                        { time: '18:00', class: 'Dancehall', instructor: 'Edd Vicente', type: 'dancehall' },
+                        { time: '19:30', class: 'Basic Femme', instructor: 'Nico Angeles', type: 'femme' },
+                        { time: '21:00', class: 'House', instructor: 'Togs Dela Torre', type: 'house' }
+                    ],
+                    5: [
+                        { time: '18:00', class: 'Hip-Hop Choreography', instructor: 'Dean Gales', type: 'hiphop' },
+                        { time: '19:30', class: 'Empowerment Dance', instructor: 'Jana Mahusay', type: 'contemporary' },
+                        { time: '21:00', class: 'Power & Flow', instructor: 'JM Yrreverre', type: 'contemporary' }
+                    ],
+                    6: [
+                        { time: '14:00', class: 'Basic Dancehall', instructor: 'April Antonette', type: 'dancehall' },
+                        { time: '15:30', class: 'K-Pop Choreography', instructor: 'April Antonette', type: 'kpop' },
+                        { time: '17:00', class: 'Basic Femme', instructor: 'Jaja Bordado', type: 'femme' },
+                        { time: '18:30', class: 'Hip-Hop', instructor: 'Carla Faner', type: 'hiphop' },
+                        { time: '20:00', class: 'Dancehall', instructor: 'Trisha Martin', type: 'dancehall' }
+                    ],
+                    0: [
+                        { time: '14:00', class: 'K-Pop Choreography', instructor: 'Joshua Dacena', type: 'kpop' },
+                        { time: '15:30', class: 'House', instructor: 'Von Asilo', type: 'house' },
+                        { time: '17:00', class: 'Empowerment Dance', instructor: 'Ysai Castro', type: 'contemporary' },
+                        { time: '18:30', class: 'Hip-Hop', instructor: 'Sef Remollo', type: 'hiphop' }
+                    ]
+                };
+            }
+            
+            previousWeek() {
+                this.currentWeek--;
+                this.renderCalendar();
+            }
+            
+            nextWeek() {
+                this.currentWeek++;
+                this.renderCalendar();
+            }
+            
+            renderCalendar() {
+                const monthNames = [
+                    'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                ];
+                
+                // Calculate the start of the current week (Monday)
+                const today = new Date();
+                const currentDay = today.getDay();
+                const dayOfWeek = currentDay === 0 ? 6 : currentDay - 1; // Convert Sunday to 6
+                const startOfWeek = new Date(today);
+                startOfWeek.setDate(today.getDate() - dayOfWeek);
+                
+                // Calculate the week start date for the current view
+                const weekStart = new Date(startOfWeek);
+                weekStart.setDate(startOfWeek.getDate() + (this.currentWeek * 7));
+                
+                // Update header to show week range
+                const weekEnd = new Date(weekStart);
+                weekEnd.setDate(weekStart.getDate() + 6);
+                
+                const startMonth = monthNames[weekStart.getMonth()];
+                const endMonth = monthNames[weekEnd.getMonth()];
+                const startDay = weekStart.getDate();
+                const endDay = weekEnd.getDate();
+                const year = weekStart.getFullYear();
+                
+                if (startMonth === endMonth) {
+                    document.getElementById('currentMonth').textContent = `${startMonth} ${startDay}-${endDay}, ${year}`;
+                } else {
+                    document.getElementById('currentMonth').textContent = `${startMonth} ${startDay} - ${endMonth} ${endDay}, ${year}`;
+                }
+                
+                const calendarDays = document.getElementById('calendarDays');
+                calendarDays.innerHTML = '';
+                
+                // Render only 7 days (one week)
+                for (let i = 0; i < 7; i++) {
+                    const currentDate = new Date(weekStart);
+                    currentDate.setDate(weekStart.getDate() + i);
+                    
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'calendar-day';
+                    
+                    if (this.isToday(currentDate)) {
+                        dayElement.classList.add('today');
+                    }
+                    
+                    const dayNumber = document.createElement('div');
+                    dayNumber.className = 'day-number';
+                    dayNumber.textContent = currentDate.getDate();
+                    dayElement.appendChild(dayNumber);
+                    
+                    // Add day name
+                    const dayName = document.createElement('div');
+                    dayName.className = 'day-name';
+                    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                    dayName.textContent = dayNames[currentDate.getDay()];
+                    dayElement.appendChild(dayName);
+                    
+                    // Add class indicators
+                    const dayOfWeek = currentDate.getDay();
+                    const classes = this.classSchedule[dayOfWeek] || [];
+                    
+                    if (classes.length > 0) {
+                        dayElement.classList.add('has-class');
+                        const classCount = document.createElement('div');
+                        classCount.className = 'class-count';
+                        classCount.textContent = `${classes.length} classes`;
+                        dayElement.appendChild(classCount);
+                    }
+                    
+                    // Add click event for booking
+                    dayElement.addEventListener('click', () => {
+                        if (classes.length > 0) {
+                            this.showClassDetails(currentDate, classes);
+                        }
+                    });
+                    
+                    calendarDays.appendChild(dayElement);
+                }
+            }
+            
+            isToday(date) {
+                const today = new Date();
+                return date.getDate() === today.getDate() &&
+                       date.getMonth() === today.getMonth() &&
+                       date.getFullYear() === today.getFullYear();
+            }
+            
+            formatDate(date) {
+                return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+            }
+            
+            showClassDetails(date, classes) {
+                const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                
+                const dayName = dayNames[date.getDay()];
+                const monthName = monthNames[date.getMonth()];
+                const dayNumber = date.getDate();
+                const year = date.getFullYear();
+                
+                let classDetails = `Classes for ${dayName}, ${monthName} ${dayNumber}, ${year} (PHT):\n\n`;
+                
+                classes.forEach((classItem, index) => {
+                    classDetails += `${index + 1}. ${classItem.time} - ${classItem.class}\n   Instructor: ${classItem.instructor}\n\n`;
+                });
+                
+                classDetails += 'Click "Book a Class" to reserve your spot!';
+                
+                alert(classDetails);
+            }
+        }
+        
+        // Initialize calendar when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new ClassCalendar();
+        });
+    </script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    
+    <script src="firebase-config.js"></script>
+    <script src="sidebar.js"></script>
+    <script src="scroll-animations.js"></script>
+    
+    <!-- Initialize Firebase when page loads -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.initializeFirebase) {
+                window.initializeFirebase();
+            }
+        });
+    </script>
+</body>
+</html>
